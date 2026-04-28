@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Orders - Fresh Link</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="orders.html">My Orders</a>
+</nav>
+
+<h1>Your Orders</h1>
+
+<div id="orderList"></div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let container = document.getElementById("orderList");
+
+if (orders.length === 0) {
+    container.innerHTML = "<p>No orders yet.</p>";
+} else {
+    orders.forEach(o => {
+        container.innerHTML += `
+            <div class="card">
+                <p>🛒 ${o.product}</p>
+                <p>📅 ${o.date}</p>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
